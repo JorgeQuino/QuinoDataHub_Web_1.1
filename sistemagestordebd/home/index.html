@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>INICIO</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <section class="full-box cover dashboard-sideBar">
+        <div class="full-box dashboard-sideBar-bg btn-menu-dashboard"></div>
+        <div class="full-box dashboard-sideBar-ct">
+            <div class="full-box text-uppercase text-center text-titles dashboard-sideBar-title">
+                Bases de datos <i class="zmdi zmdi-close btn-menu-dashboard visible-xs"></i>
+            </div>
+            <div class="full-box dashboard-sideBar-UserInfo">
+                <figure class="full-box">
+                    <img src="./assets/img/avatar.gif" alt="UserIcon">
+                    <figcaption class="text-center text-titles">Usuario: root</figcaption>
+                </figure>
+               <ul class="full-box list-unstyled text-center">
+    <li>
+        <a href="../login/login.html" class="btn-exit-system">
+            <i class="zmdi zmdi-power"></i> 
+        </a>
+    </li>
+</ul>
+
+            </div>
+            <ul class="list-unstyled full-box dashboard-sideBar-Menu">
+                <li>
+                    <a href="index.html">
+                        <i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Refrescar
+                    </a>
+                </li>
+                <li>
+                    <a href="#!" class="btn-sideBar-SubMenu">
+                        <i class="fas fa-database"></i> Base de datos <i class="zmdi zmdi-caret-down pull-right"></i>
+                    </a>
+                    
+                    <ul class="list-unstyled full-box">
+                        <!-- Botón para abrir la modal -->
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#crearNuevaModal">
+                                <i class="fas fa-plus"></i> Agregar nueva
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+               
+               
+ <ul  id="baseDatosLink"  name="bd" class="list-unstyled full-box dashboard-sideBar-Menu">
+        
+                
+            </ul>
+            
+            
+            
+            </ul>
+           
+        </div>
+    </section>
+
+    <!-- Content page -->
+    <section class="full-box dashboard-contentPage">
+        <nav class="full-box dashboard-Navbar">
+            <ul class="full-box list-unstyled text-right">
+                <li class="pull-left">
+                    <a href="#!" class="btn-menu-dashboard"><i class="zmdi zmdi-more-vert"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="page-header">
+                <h1 class="text-titles">QuinoDataHub <small> Tablas de la base de datos : </small></h1>
+            </div>
+        </div>
+        
+        
+        
+        
+
+
+       
+       
+       <center>
+                 <div class="full-box text-center" style="padding: 30px 10px;">
+           <div id="crearTablaIcon" class="full-box tile" style="height: 184px; text-align: center; line-height: 250px; border: 1px solid #ccc;">
+           <div class="full-box tile-title text-center text-titles text-uppercase">
+                        Crear una tabla 
+                </div>
+    <center>
+      <i id="openModal" class="fas fa-plus-circle fa-3x" style="margin: 0 10px;"></i>
+    </center>
+</div>
+           
+             
+              <style>
+                  
+                  
+                  .modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+                  
+                  
+                  
+                  
+                  
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0px 50px   ;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            height: 100;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group select {
+            margin-top: 5px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            font-size: 18px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+   
+ <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="header">Formulario para Crear Tabla</div>
+            <button class="close-button" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <form>
+                <div class="form-group">
+                    <label for="dbName">Nombre de la Tabla:</label>
+                    <input type="text" id="dbName" name="dbName" required>
+                </div>
+                <div class="form-group">
+                    <label for="numColumns">Número de Columnas:</label>
+                    <input type="number" id="numColumns" name="numColumns" min="1" required>
+                </div>
+
+                <div id="columnFields"></div>
+
+                <div class="form-group">
+                    <input type="submit" value="Generar Tabla">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Obtén referencias a elementos HTML
+        var openModalButton = document.getElementById("openModal");
+        var modal = document.getElementById("myModal");
+
+        // Agrega un event listener para abrir el modal
+        openModalButton.addEventListener("click", function() {
+            modal.style.display = "flex";
+        });
+
+        // Agrega un event listener para cerrar el modal haciendo clic fuera de él
+        window.addEventListener("click", function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        // Agrega un event listener para actualizar los campos de columna según el número ingresado
+        document.getElementById("numColumns").addEventListener("input", function() {
+            generateColumnFields();
+        });
+
+        // Función para generar los campos de columna dinámicamente
+        function generateColumnFields() {
+            var numColumns = document.getElementById("numColumns").value;
+            var columnFieldsContainer = document.getElementById("columnFields");
+            columnFieldsContainer.innerHTML = "";
+
+            for (var i = 1; i <= numColumns; i++) {
+                var columnGroup = document.createElement("div");
+                columnGroup.classList.add("form-group");
+
+                var nameLabel = document.createElement("label");
+                nameLabel.textContent = "Nombre del Campo " + i + ":";
+                columnGroup.appendChild(nameLabel);
+
+                var nameInput = document.createElement("input");
+                nameInput.type = "text";
+                nameInput.name = "columnName" + i;
+                nameInput.required = true;
+                columnGroup.appendChild(nameInput);
+
+                var typeLabel = document.createElement("label");
+                typeLabel.textContent = "Tipo de Dato:";
+                columnGroup.appendChild(typeLabel);
+
+                var typeSelect = document.createElement("select");
+                typeSelect.name = "columnType" + i;
+                typeSelect.required = true;
+
+                var types = ["int", "varchar", "date", "text"]; // Puedes agregar más tipos según tus necesidades
+
+                for (var j = 0; j < types.length; j++) {
+                    var option = document.createElement("option");
+                    option.value = types[j];
+                    option.text = types[j];
+                    typeSelect.appendChild(option);
+                }
+
+                columnGroup.appendChild(typeSelect);
+
+                columnFieldsContainer.appendChild(columnGroup);
+            }
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
+
+
+           <article id="tablaInfo" class="full-box tile">
+    <div class="full-box tile-title text-center text-titles text-uppercase">
+        Nombre de la tabla:
+    </div>
+</article>
+
+                    
+          
+
+
+          
+           
+
+<div class="full-box tile" style="height: 184px; text-align: center; line-height: 250px; border: 1px solid #ccc;">
+    <div class="full-box tile-title text-center text-titles text-uppercase">
+        Siguiente
+    </div>
+    <center>
+        <i class="fas fa-arrow-right fa-3x" style="margin: 0 10px;"></i>
+    </center>
+</div>
+       
+        </div>
+           
+       </center>
+       
+  
+      <div class="container-fluid">
+ <h1 class="text-titles">QuinoDataHub <small> Tablas de la base de datos: <span id="nombreBaseDatos"></span></small></h1>
+
+
+   
+   
+   <style>
+    /* Ocultar la tabla y el botón al inicio */
+ .table-responsive,
+.btn-insertar-fila {
+    display: block; /* Cambiar de "none" a "block" */
+}
+</style>
+
+    
+    <!-- Tabla para mostrar datos -->
+<!-- Tabla para mostrar datos -->
+
+<div id="tablaDatos" class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                 <th></th> <th></th> <th></th> <th></th> <th></th> <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se agregarán las filas con datos -->
+            <!-- Puedes usar un bucle o agregarlas manualmente -->
+            <tr>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td> 
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td> 
+                <td contenteditable="true"></td>
+                <td contenteditable="true"></td>
+
+
+            </tr>
+         
+        </tbody>
+    </table>
+</div>
+
+
+    <!-- Botón para insertar nueva fila -->
+<button class="btn btn-success text-white" onclick="insertarFila()">Insertar Nueva Fila</button>
+</div>
+    </section>
+
+    <!--====== Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.1.1.min.js"></script>
+    <script src="./js/sweetalert2.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/material.min.js"></script>
+    <script src="./js/ripples.min.js"></script>
+    <script src="./js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+        $.material.init();
+    </script>
+    <!-- Script para procesar la creación de la base de datos -->
+    <script>
+        function crearBaseDatos() {
+            var nombreBaseDatos = document.getElementById('nombreBaseDatos').value;
+            var metaCharset = document.getElementById('metaCharset').value;
+
+            console.log('Nombre de la base de datos:', nombreBaseDatos);
+            console.log('Metacharset:', metaCharset);
+
+            $('#crearNuevaModal').modal('hide');
+        }
+    </script>
+   <div class="modal fade" id="crearNuevaModal" tabindex="-1" role="dialog" aria-labelledby="crearNuevaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="crearNuevaModalLabel">Crear Nueva Base de Datos</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para ingresar nombre de la base de datos y metacharset -->
+                <form>
+                    <div class="form-group">
+                        <label for="nombreBaseDatos">
+                            <i class="fas fa-database"></i> Nombre de la Base de Datos
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-database"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="nombreBaseDatos" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="metaCharset">
+                            <i class="fas fa-code"></i> Metacharset
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-code"></i></span>
+                            </div>
+                            <select class="form-control" id="metaCharset" required>
+                                <option value="utf-8">UTF-8</option>
+                                <option value="iso-8859-1">ISO-8859-1</option>
+                                <option value="windows-1252">Windows-1252</option>
+                                <!-- Agrega más opciones según sea necesario -->
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <!-- Agrega estos scripts en tu archivo HTML para incluir jQuery y Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Tu botón de "Crear" -->
+<button type="button" class="btn btn-primary" onclick="mostrarModal()">Crear</button>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script>
+ 
+    // Contador para el identificador único de las filas
+    var contadorFilas = 1;
+
+    // Función para actualizar una fila
+    function actualizarFila(id) {
+        // Lógica para actualizar la fila con el ID proporcionado
+        console.log('Actualizar fila con ID:', id);
+    }
+
+    // Función para borrar una fila
+    function borrarFila(id) {
+        // Obtener la referencia de la tabla y del cuerpo de la tabla
+        var tabla = document.querySelector('.table');
+        var tbody = tabla.querySelector('tbody');
+
+        // Encontrar la fila por el ID
+        var filaABorrar = document.getElementById('fila-' + id);
+
+        // Borrar la fila si existe
+        if (filaABorrar) {
+            tbody.removeChild(filaABorrar);
+        }
+
+        console.log('Borrar fila con ID:', id);
+    }
+
+  
+
+// Función para insertar una nueva fila
+function insertarFila() {
+    // Obtener la referencia de la tabla y del cuerpo de la tabla
+    var tabla = document.querySelector('.table');
+    var tbody = tabla.querySelector('tbody');
+
+    // Obtener el encabezado de la tabla para obtener los nombres de las columnas
+    var headerRow = tabla.querySelector('thead tr');
+    var columnNames = Array.from(headerRow.children).map(function (th) {
+        return th.textContent.trim();
+    });
+
+    // Crear una nueva fila
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.id = 'fila-nueva';  // Agregar un ID único a la fila
+
+    // Agregar celdas con contenido editable
+    columnNames.forEach(function (columnName) {
+        var nuevaCelda = document.createElement('td');
+        nuevaCelda.setAttribute('contenteditable', 'true');
+        nuevaFila.appendChild(nuevaCelda);
+    });
+
+    // Agregar celda de acciones
+    var accionesCelda = document.createElement('td');
+    accionesCelda.innerHTML = `
+        <button class="btn btn-warning btn-sm" onclick="actualizarFila('fila-nueva')">Actualizar</button>
+        <button class="btn btn-danger btn-sm" onclick="borrarFila('fila-nueva')">Borrar</button>
+    `;
+    nuevaFila.appendChild(accionesCelda);
+
+    // Agregar la nueva fila al cuerpo de la tabla
+    tbody.appendChild(nuevaFila);
+}
+      // Función para actualizar una fila
+function actualizarFila(id) {
+    // Mostrar la ventana modal al hacer clic en el botón "Actualizar"
+    var modal = document.getElementById('myModal');
+    modal.style.display = 'block';
+
+    // Manejar el clic en el botón "Aceptar" de la ventana modal
+    var confirmarBtn = document.getElementById('confirmarActualizar');
+    confirmarBtn.onclick = function () {
+        // Aquí iría la lógica para actualizar la fila
+        // ...
+
+        // Cerrar la ventana modal
+        modal.style.display = 'none';
+    };
+
+    // Manejar el clic en el botón "Cancelar" de la ventana modal
+    var cancelarBtn = document.getElementById('cancelarActualizar');
+    cancelarBtn.onclick = function () {
+        // Cerrar la ventana modal
+        modal.style.display = 'none';
+    };
+
+    // Manejar el clic en el botón de cerrar la ventana modal
+    var closeBtn = document.getElementsByClassName('close')[0];
+    closeBtn.onclick = function () {
+        // Cerrar la ventana modal
+        modal.style.display = 'none';
+    };
+}
+
+      
+      // Función para borrar una fila
+function borrarFila(id) {
+    // Obtener la fila por su ID
+    var fila = document.getElementById(id);
+
+    // Mostrar un mensaje de confirmación
+    var confirmacion = confirm('¿Seguro que deseas borrar la fila?');
+
+    // Si se confirma la acción, borrar la fila
+    if (confirmacion) {
+        fila.parentNode.removeChild(fila);
+        alert('Fila borrada exitosamente');
+    } else {
+        alert('Acción de borrado cancelada');
+    }
+}
+
+      
+
+      // Función para insertar una nueva fila
+// Función para insertar una nueva fila
+function insertarFila() {
+    // Obtener la referencia de la tabla y del cuerpo de la tabla
+    var tabla = document.querySelector('.table');
+    var tbody = tabla.querySelector('tbody');
+
+    // Obtener el encabezado de la tabla para obtener los nombres de las columnas
+    var headerRow = tabla.querySelector('thead tr');
+    var columnNames = Array.from(headerRow.children).map(function (th) {
+        return th.textContent.trim();
+    });
+
+    // Crear una nueva fila
+    var nuevaFila = document.createElement('tr');
+    nuevaFila.id = 'fila-nueva';  // Agregar un ID único a la fila
+
+    // Agregar celdas con contenido editable
+    columnNames.forEach(function (columnName) {
+        var nuevaCelda = document.createElement('td');
+        nuevaCelda.setAttribute('contenteditable', 'true');
+        nuevaFila.appendChild(nuevaCelda);
+    });
+
+    // Agregar celda de acciones
+    var accionesCelda = document.createElement('td');
+    accionesCelda.innerHTML = `
+        <button class="btn btn-warning btn-sm" onclick="actualizarFila('fila-nueva')">Actualizar</button>
+        <button class="btn btn-danger btn-sm" onclick="borrarFila('fila-nueva')">Borrar</button>
+    `;
+    nuevaFila.appendChild(accionesCelda);
+
+    // Agregar la nueva fila al cuerpo de la tabla
+    tbody.appendChild(nuevaFila);
+}
+
+
+
+function actualizarListaBasesDatos() {
+    // Obtener el elemento <ul> donde se mostrarán las bases de datos
+    var listaBasesDatos = document.querySelector('ul[name="bd"]');
+
+    // Limpiar la lista actual
+    listaBasesDatos.innerHTML = '';
+
+    // Obtener las bases de datos almacenadas en localStorage
+    var basesDeDatos = JSON.parse(localStorage.getItem('basesDeDatos')) || [];
+
+    // Crear elementos de lista para cada base de datos y agregarlos a la lista
+    basesDeDatos.forEach(function (baseDatos) {
+        var nuevoElemento = document.createElement('li');
+        nuevoElemento.innerHTML = '<a href="#">' + baseDatos + '</a>';
+        listaBasesDatos.appendChild(nuevoElemento);
+    });
+    
+    // Al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    // Actualizar la lista de bases de datos en el menú lateral
+    actualizarListaBasesDatos();
+});
+
+}
+
+</script>
+ 
+           <!-- ... (código anterior) ... -->
+
+<!-- Script para procesar la creación de la base de datos -->
+<script>
+    function crearBaseDatos() {
+        var nombreBaseDatos = document.getElementById('nombreBaseDatos').value;
+        var metaCharset = document.getElementById('metaCharset').value;
+
+        console.log('Nombre de la base de datos:', nombreBaseDatos);
+        console.log('Metacharset:', metaCharset);
+
+        // Llamar a la función para mostrar la notificación y actualizar la lista
+        mostrarModal();
+    }
+
+    function mostrarModal() {
+        // Obtener el nombre de la base de datos desde el formulario
+        var nombreBaseDatos = document.getElementById('nombreBaseDatos').value;
+
+        // Lógica para almacenar el nombre de la base de datos (puedes usar localStorage, una base de datos, etc.)
+        // En este ejemplo, se utiliza localStorage
+        var basesDeDatos = JSON.parse(localStorage.getItem('basesDeDatos')) || [];
+        basesDeDatos.push(nombreBaseDatos);
+        localStorage.setItem('basesDeDatos', JSON.stringify(basesDeDatos));
+// Mostrar la notificación
+    Swal.fire({
+        icon: 'success',
+        title: 'Se creó la Base de Datos',
+        timer: 3000,
+        showConfirmButton: false
+    }).then(() => {
+        // Actualizar la lista de bases de datos en el menú lateral
+        actualizarListaBasesDatos();
+
+        // Obtener el nombre de la base de datos desde el formulario
+        var nombreBaseDatos = document.getElementById('nombreBaseDatos').value;
+
+        // Actualizar el nombre de la base de datos en el encabezado
+        document.getElementById('nombreBaseDatos').innerText = nombreBaseDatos;
+
+        // Concatenar el nombre de la base de datos al título de la tabla
+        var tituloTabla = "Tablas de la base de datos: " + nombreBaseDatos;
+        document.querySelector('.text-titles small').innerText = tituloTabla;
+        
+    });
+        
+        
+        
+        
+        
+        
+    }
+
+    // Función para procesar el evento DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', function () {
+        // Actualizar la lista de bases de datos en el menú lateral
+        actualizarListaBasesDatos();
+    });
+
+    // Función para actualizar la lista de bases de datos en el menú lateral
+    function actualizarListaBasesDatos() {
+        // Obtener el elemento <ul> donde se mostrarán las bases de datos
+        var listaBasesDatos = document.querySelector('ul[name="bd"]');
+
+        // Limpiar la lista actual
+        listaBasesDatos.innerHTML = '';
+
+        // Obtener las bases de datos almacenadas en localStorage
+        var basesDeDatos = JSON.parse(localStorage.getItem('basesDeDatos')) || [];
+
+        // Crear elementos de lista para cada base de datos y agregarlos a la lista
+        basesDeDatos.forEach(function (baseDatos) {
+            var nuevoElemento = document.createElement('li');
+            nuevoElemento.innerHTML = '<a href="#">' + baseDatos + '</a>';
+            listaBasesDatos.appendChild(nuevoElemento);
+        });
+    }
+
+    // Resto del código...
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Obtener el elemento del botón de salida
+        var exitButton = document.querySelector('.btn-exit-system');
+
+        // Agregar un manejador de eventos al hacer clic en el botón
+        exitButton.addEventListener('click', function (event) {
+            // Mostrar una ventana de confirmación
+            var isConfirmed = window.confirm('¿Estás seguro de que quieres salir?');
+
+            // Redirigir si se confirma
+            if (isConfirmed) {
+                window.location.href = exitButton.getAttribute('href');
+            } else {
+                // Cancelar la acción predeterminada si se hace clic en "cancelar"
+                event.preventDefault();
+            }
+        });
+    });
+</script>
+
+  <!-- Asegúrate de tener Font Awesome correctamente vinculado -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Obtener el enlace de la base de datos y el icono de "Crear una tabla"
+            var baseDatosLink = document.getElementById('baseDatosLink');
+            var crearTablaIcon = document.getElementById('crearTablaIcon');
+
+            // Agregar un evento al enlace de la base de datos
+            baseDatosLink.addEventListener('click', function () {
+                // Mostrar el icono de "Crear una tabla"
+                crearTablaIcon.style.display = 'block';
+            });
+        });
+    </script>
+
+
+       <script>
+    // ... (código anterior)
+
+    // Función para procesar el formulario y agregar la tabla
+    document.querySelector("#myModal form").addEventListener("submit", function (event) {
+        event.preventDefault(); // Evita el envío del formulario
+
+        // Obtén el nombre de la tabla y el número de columnas
+        var tableName = document.getElementById("dbName").value;
+        var numColumns = parseInt(document.getElementById("numColumns").value, 10);
+
+        // Obtén los nombres y tipos de las columnas
+        var columnNames = [];
+        var columnTypes = [];
+
+        for (var i = 1; i <= numColumns; i++) {
+            var columnName = document.querySelector('input[name="columnName' + i + '"]').value;
+            var columnType = document.querySelector('select[name="columnType' + i + '"]').value;
+
+            columnNames.push(columnName);
+            columnTypes.push(columnType);
+        }
+
+        // Llama a la función para cerrar el modal
+        closeModal();
+
+        // Llama a la función para agregar la tabla
+        agregarTabla(tableName, columnNames);
+    });
+
+    // Función para agregar la tabla con los nombres de las columnas
+    function agregarTabla(tableName, columnNames) {
+        // Obtén la referencia de la tabla y del cuerpo de la tabla
+        var tabla = document.querySelector("#tablaDatos table");
+        var tbody = tabla.querySelector("tbody");
+
+        // Crear una nueva fila en el encabezado con los nombres de las columnas
+        var headerRow = document.createElement("tr");
+        headerRow.innerHTML = "<th>ID</th>";
+
+        columnNames.forEach(function (columnName) {
+            headerRow.innerHTML += "<th>" + columnName + "</th>";
+        });
+
+        headerRow.innerHTML += "<th>Acciones</th>";
+        tabla.querySelector("thead").appendChild(headerRow);
+
+        // Crear una nueva fila en el cuerpo de la tabla
+        var nuevaFila = document.createElement("tr");
+        nuevaFila.innerHTML = "<td></td>";
+
+        columnNames.forEach(function () {
+            nuevaFila.innerHTML += "<td></td>";
+        });
+
+        nuevaFila.innerHTML += `<td>
+            <button class="btn btn-warning btn-sm" onclick="actualizarFila(1)">Actualizar</button>
+            <button class="btn btn-danger btn-sm" onclick="borrarFila(1)">Borrar</button>
+        </td>`;
+
+        // Agregar la nueva fila al cuerpo de la tabla
+        tbody.appendChild(nuevaFila);
+        
+        
+        
+        
+        
+    }
+
+    // ... (código anterior)
+</script>
+
+   
+    
+    
+     
+
+            </div>
+        </div>
+    </div>
+</div>
+      
+             <div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>¿Seguro que deseas actualizar la fila?</p>
+    <button id="confirmarActualizar">Aceptar</button>
+    <button id="cancelarActualizar">Cancelar</button>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>
